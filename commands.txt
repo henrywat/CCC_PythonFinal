@@ -1,0 +1,52 @@
+mkdir CCC_PythonFinal
+cd CCC_PythonFinal
+
+python3 -m venv myvenv
+source myvenv/bin/activate
+
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+
+django-admin startproject albertaproject
+cd albertaproject
+
+albertaproject.settings.py / TIME_ZONE = 'Canada/Mountain'
+
+python manage.py makemigrations
+python manage.py migrate
+
+python3 manage.py createsuperuser
+(admin/admin)
+
+python manage.py runserver
+
+python manage.py startapp drivingtest
+
+albertaproject.settings.py / [INSTALLED_APPS] / 'drivingtest',
+
+python manage.py makemigrations drivingtest
+python manage.py migrate drivingtest
+
+## create urls.py under 'drivingexam'
+from django.urls import path
+from . import views
+urlpatterns = [ path("", views.index, name="index"), ]
+
+## URL Mapping, add the app 'drivingexam' to project url Mapping
+from django.urls import include
+path("drivingexam/", include("drivingexam.urls")),
+
+## make 'drivingexam' as default homepage/index
+from django.views.generic import RedirectView
+path('', RedirectView.as_view(url='drivingexam/')),
+
+## create folder 'templates' under 'drivingexam'
+
+NOW, DEVLOPE SITE UNDER 'drivingexam' FOLDERS ONLY
+## 1. create models (models.py)
+## 2. register models (admin.py)
+## 3. rebuild project database (admin.py)
+
+## 3. create URL mapping for a new views (urls.py)  // URL -> VIEW
+## 4. create views (views.py) // VIEW(data or custom data) -> template
+## 5. create templates(html) (under 'templates' folder) // template -> display data(web page)

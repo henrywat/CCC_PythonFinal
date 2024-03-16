@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Alberta Driving Exam</title>
+</head>
+<body>
+    <h5>Create Career College - Python Programming Final Project<br>Web application skeleton by Django<br>by HenryWat@gmail.com @ Mar2024</h5>
+    <hr><br>
+    {% load static %}
+    <img src="{% static 'images/alberta.svg' %}">
+    <h1>Welcome to the Alberta Driving Knowledge Test</h1>
+    <p>Click the button below to start your test.</p>
+    <br>
+    <form action="{% url 'test' %}" method="get">
+        <button type="submit">Start</button>
+    </form>
+</body>
+</html>

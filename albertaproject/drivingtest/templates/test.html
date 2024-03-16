@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question</title>
+</head>
+<body>
+    <h3>Q{{ question_id }}. {{ question.text }}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% for choice in choices %}
+        <label>
+            <input type="radio" name="choice" value="{{ choice.id }}">
+            {{ choice.text }}
+        </label><br><br>
+        {% endfor %}
+        <br>
+        {% if not is_last_question %}
+        <button type="submit" name="action" value="next">Next</button>
+        {% else %}
+        <button type="submit" name="action" value="submit">Submit</button>
+        {% endif %}
+    </form>
+</body>
+</html>
